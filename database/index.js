@@ -1,5 +1,4 @@
 var Sequelize = require('sequelize');
-var faker = require('faker');
 
 const connection = new Sequelize('FECdb', 'root', '', {
   host:'localhost',
@@ -38,34 +37,7 @@ const UserQA = connection.define('userqa', {
   }
 });
 
-userQAdata = () => {
-for (let i = 0; i <= 100; i++) {
-  UserQA.create({
-    user: faker.name.findName(),
-    question: faker.lorem.sentences() + '?',
-    answer: faker.lorem.sentences(),
-    date: faker.date.past()
-  })
-}
-}
 
-productData = () => {
-  for (let i = 0; i <= 100; i++) {
-  ProductOverview.create({
-    sentence: faker.lorem.sentence(),
-    keyDetail1: faker.lorem.sentence(),
-    keyDetail2: faker.lorem.sentence(),
-    keyDetail3: faker.lorem.sentence(),
-    keyDetail4: faker.lorem.sentence(),
-    keyDetail5: faker.lorem.sentence(),
-    keyDetail6: faker.lorem.sentence(),
-    keyDetail7: faker.lorem.sentence(),
-    keyDetail8: faker.lorem.words(),
-    keyDetail9: faker.lorem.words(),
-    keyDetail10: faker.lorem.words()
-  })
-}
-}
 
 const ProductOverview = connection.define('overview', {
   sentence:{
@@ -114,8 +86,37 @@ const ProductOverview = connection.define('overview', {
   }
 });
 
+userQAdata = () => {
+for (let i = 0; i <= 50; i++) {
+  UserQA.create({
+    user: faker.name.findName(),
+    question: faker.lorem.sentences() + '?',
+    answer: faker.lorem.sentences(),
+    date: faker.date.past()
+  })
+}
+};
+
+productData = () => {
+  for (let i = 0; i <= 50; i++) {
+    ProductOverview.create({
+     sentence: faker.lorem.sentence(),
+     keyDetail1: faker.lorem.sentence(),
+     keyDetail2: faker.lorem.sentence(),
+     keyDetail3: faker.lorem.sentence(),
+     keyDetail4: faker.lorem.sentence(),
+     keyDetail5: faker.lorem.sentence(),
+     keyDetail6: faker.lorem.sentence(),
+     keyDetail7: faker.lorem.sentence(),
+     keyDetail8: faker.lorem.words(),
+     keyDetail9: faker.lorem.words(),
+     keyDetail10: faker.lorem.words()
+   })
+ }
+ };
+
 dimensionGen = () => {
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 50; i++) {
     Dimension.create({
       width: faker.random.number(),
       depth: faker.random.number(),
@@ -126,7 +127,7 @@ dimensionGen = () => {
       care: faker.lorem.paragraph()
     })
   }
-}
+};
 
 
 
@@ -157,21 +158,18 @@ const Dimension = connection.define('dimension', {
 });
 
 
-UserQA.sync({force: true})
+UserQA.sync({force: false })
   .then( () => { console.log('QA table sync') })
-  .then( () => {userQAdata()} )
   .catch( (err) => { console.error('userqa sync error', err) 
 });
 
-ProductOverview.sync({force: true})
+ProductOverview.sync({force: false })
   .then( () => { console.log('Product table sync') })
-  .then( () => {productData()} )
   .catch( (err) => { console.error('product table fail')
 });
 
-Dimension.sync({force: true})
+Dimension.sync({force: false })
   .then( () => { console.log('Dimension sync success') })
-  .then( () => {dimensionGen()} )
   .catch( (err) => { console.error('Dimension sync failed', err)
 });
 
