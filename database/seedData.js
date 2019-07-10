@@ -15,7 +15,7 @@ userQAdata = () => {
   productData = () => {
     for (let i = 0; i <= 50; i++) {
       dbs.ProductOverview.create({
-       sentence: faker.lorem.sentence(),
+       sentence: faker.lorem.paragraph(),
        keyDetail1: faker.lorem.sentence(),
        keyDetail2: faker.lorem.sentence(),
        keyDetail3: faker.lorem.sentence(),
