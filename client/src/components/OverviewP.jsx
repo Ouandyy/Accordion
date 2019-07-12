@@ -8,8 +8,8 @@ const OverviewP = (props) => {
   if (props.index === props.randomNum) {
     return (
       <div>
-    <p>{props.data.sentence}</p>
-    <h6>HEADER</h6>
+        <p>{props.data.sentence}</p>
+        <h6>KEY DETAILS</h6>
         <ul>
           <li>{props.data.keyDetail1}</li>
           <li>{props.data.keyDetail2}</li>
@@ -22,9 +22,9 @@ const OverviewP = (props) => {
           <li>{props.data.keyDetail9}</li>
           <li>{props.data.keyDetail10}</li>
         </ul>
-        </div>
-        )
-  }else {
+      </div>
+    )
+  } else {
     return null
   }
 }

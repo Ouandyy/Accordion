@@ -1,6 +1,7 @@
 import React from 'react';
 import Overview from './Overview.jsx';
 import Details from './Details.jsx';
+import Shipping from './Shipping.jsx';
 
 class Accordion extends React.Component {
   constructor(props) {
@@ -18,8 +19,10 @@ class Accordion extends React.Component {
     for (let i in this.state) {
       if (i !== e.target.id) {
         this.setState({ [i]: [0, "notActive"] })
+      } else if (i === e.target.id && e.target.id === "shipping") {
+        this.setState({ [i]: [1200, "active"] })
       } else {
-        this.setState({ [i]: [500, "active"] })
+        this.setState({ [i]: [550, "active"] })
       }
     };
   };
@@ -63,7 +66,7 @@ class Accordion extends React.Component {
         <div className="panel" style={{
           maxHeight: this.state.shipping[0]
         }}>
-          THIS IS SHIPPING STUFF
+          <Shipping/>
 
         </div>
 

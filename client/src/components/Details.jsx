@@ -20,7 +20,13 @@ class Detail extends React.Component {
   }
 
   render() {
-    return <DetailList dimension = {this.state.randomDimension}/>
+    return (
+    <div>
+    {this.state.randomDimension.map((data, index) => {
+      return <DetailList data={data} index={index} key={index} randomNum={this.state.randomNum}/>
+    })}
+    </div>
+    )
   }
 }
 

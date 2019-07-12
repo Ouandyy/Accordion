@@ -11,7 +11,7 @@ app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
 app.get('/api/qa', (req, res) => {dbs.findAllQA(res)});
-
+ 
 app.get('/api/dimension', (req, res) => {dbs.findAllDimension(res)});
 
 app.get('/api/overview', (req, res) => {dbs.findAllProduct(res)});

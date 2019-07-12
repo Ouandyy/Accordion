@@ -1,6 +1,30 @@
 const dbs = require('./index.js');
 var faker = require('faker');
 
+
+dbs.UserQA.sync({force: true })
+  .then( () => { console.log('QA table sync') })
+  .catch( (err) => { console.error('userqa sync error', err) 
+});
+
+dbs.ProductOverview.sync({force: true })
+  .then( () => { console.log('Product table sync') })
+  .catch( (err) => { console.error('product table fail')
+});
+
+dbs.Dimension.sync({force: true })
+  .then( () => { console.log('Dimension sync success') })
+  .catch( (err) => { console.error('Dimension sync failed', err)
+});
+
+ranNumGen = () => {
+  return (Math.random() * 95) + 5
+};
+
+ranNumBox = () => {
+  return (Math.random() * 5) + 1
+}
+
 userQAdata = () => {
   for (let i = 0; i <= 50; i++) {
     dbs.UserQA.create({
@@ -33,12 +57,12 @@ userQAdata = () => {
   dimensionGen = () => {
     for (let i = 0; i < 50; i++) {
       dbs.Dimension.create({
-        width: faker.random.number(),
-        depth: faker.random.number(),
-        height: faker.random.number(),
+        width: ranNumGen(),
+        depth: ranNumGen(),
+        height: ranNumGen(),
         additionInfo: faker.lorem.sentence(),
-        numberOfBoxes: faker.random.number(),
-        packageWeight: faker.random.number(),
+        numberOfBoxes: ranNumBox(),
+        packageWeight: ranNumGen(),
         care: faker.lorem.paragraph()
       })
     }
